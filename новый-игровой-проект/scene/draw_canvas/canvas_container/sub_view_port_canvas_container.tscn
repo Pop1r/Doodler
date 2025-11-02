@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq2f5iqpuetww"]
+
+[ext_resource type="Script" uid="uid://btigmtekshuuq" path="res://sub_view_port_canvas_container.gd" id="1_alh4k"]
+
+[node name="SubViewPortCanvasContainer" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_alh4k")

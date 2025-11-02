@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://5db3dvaeyb51"]
+
+[ext_resource type="Script" uid="uid://djqnw0im8c8px" path="res://scene/UI/Tools/panel tools/tool_parametrs/pen_parametrs/size_pen_container.gd" id="1_vuaa8"]
+
+[node name="SizePenContainer" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+script = ExtResource("1_vuaa8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Size:"
+
+[node name="BrushSizeScroll" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = 0.001
+max_value = 0.1
+step = 0.001
+value = 0.009999999999999998
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+button_pressed = true
+text = "Pressure"
+
+[connection signal="value_changed" from="VBoxContainer/BrushSizeScroll" to="." method="_on_brush_size_scroll_value_changed"]
+[connection signal="pressed" from="CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

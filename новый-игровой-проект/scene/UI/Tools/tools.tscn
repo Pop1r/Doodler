@@ -1,0 +1,141 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwelrmsx517xi"]
+
+[ext_resource type="Script" uid="uid://doxuesl0xdksd" path="res://scene/UI/Tools/tools.gd" id="1_otrpg"]
+[ext_resource type="Script" uid="uid://bfi1mm158ge5l" path="res://addons/dockable_container/dockable_container.gd" id="2_fvlnh"]
+[ext_resource type="PackedScene" uid="uid://5db3dvaeyb51" path="res://scene/UI/Tools/panel tools/tool_parametrs/pen_parametrs/size_pen_container.tscn" id="2_otrpg"]
+[ext_resource type="Script" uid="uid://da67x3ua6ietw" path="res://addons/dockable_container/layout_panel.gd" id="3_nq30t"]
+[ext_resource type="Script" uid="uid://icucbtatip66" path="res://addons/dockable_container/layout.gd" id="4_bx1wi"]
+[ext_resource type="Script" uid="uid://bvvbi3x82xnut" path="res://addons/dockable_container/layout_split.gd" id="4_nq30t"]
+
+[sub_resource type="Resource" id="Resource_nq30t"]
+resource_name = "Tabs"
+script = ExtResource("3_nq30t")
+names = PackedStringArray("PanelContainer")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_bx1wi"]
+resource_name = "Tabs"
+script = ExtResource("3_nq30t")
+names = PackedStringArray("Parametrs")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_3selv"]
+resource_name = "Tabs"
+script = ExtResource("3_nq30t")
+names = PackedStringArray("OnionSkin")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_ob1jb"]
+resource_name = "Split"
+script = ExtResource("4_nq30t")
+direction = 1
+first = SubResource("Resource_bx1wi")
+second = SubResource("Resource_3selv")
+metadata/_custom_type_script = "uid://bvvbi3x82xnut"
+
+[sub_resource type="Resource" id="Resource_d64vx"]
+resource_name = "Split"
+script = ExtResource("4_nq30t")
+direction = 1
+first = SubResource("Resource_nq30t")
+second = SubResource("Resource_ob1jb")
+metadata/_custom_type_script = "uid://bvvbi3x82xnut"
+
+[sub_resource type="Resource" id="Resource_gqx1j"]
+resource_name = "Layout"
+script = ExtResource("4_bx1wi")
+root = SubResource("Resource_d64vx")
+
+[node name="Tools" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1308, 686)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_otrpg")
+
+[node name="DockableContainer" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_fvlnh")
+tabs_visible = false
+hide_single_tab = true
+layout = SubResource("Resource_gqx1j")
+metadata/_custom_type_script = "uid://bfi1mm158ge5l"
+
+[node name="PanelContainer" type="PanelContainer" parent="DockableContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DockableContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HFlowContainerTools" type="HFlowContainer" parent="DockableContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Parametrs" type="PanelContainer" parent="DockableContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="PenParamets" type="PanelContainer" parent="DockableContainer/Parametrs"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DockableContainer/Parametrs/PenParamets"]
+layout_mode = 2
+
+[node name="SizePenContainer" parent="DockableContainer/Parametrs/PenParamets/VBoxContainer" instance=ExtResource("2_otrpg")]
+layout_mode = 2
+
+[node name="OnionSkin" type="PanelContainer" parent="DockableContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DockableContainer/OnionSkin"]
+layout_mode = 2
+
+[node name="PastFrame" type="VBoxContainer" parent="DockableContainer/OnionSkin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="PastFrameEnebled" type="CheckBox" parent="DockableContainer/OnionSkin/VBoxContainer/PastFrame"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "Past Frame"
+
+[node name="PastFrameAmount" type="SpinBox" parent="DockableContainer/OnionSkin/VBoxContainer/PastFrame"]
+layout_mode = 2
+max_value = 20.0
+value = 2.0
+
+[node name="NextFrame" type="VBoxContainer" parent="DockableContainer/OnionSkin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="NextFrameEnebled" type="CheckBox" parent="DockableContainer/OnionSkin/VBoxContainer/NextFrame"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "Next Frame"
+
+[node name="NextFrameAmount" type="SpinBox" parent="DockableContainer/OnionSkin/VBoxContainer/NextFrame"]
+layout_mode = 2
+max_value = 20.0
+value = 2.0
+
+[connection signal="toggled" from="DockableContainer/OnionSkin/VBoxContainer/PastFrame/PastFrameEnebled" to="." method="_on_past_frame_enebled_toggled"]
+[connection signal="value_changed" from="DockableContainer/OnionSkin/VBoxContainer/PastFrame/PastFrameAmount" to="." method="_on_past_frame_amount_value_changed"]
+[connection signal="toggled" from="DockableContainer/OnionSkin/VBoxContainer/NextFrame/NextFrameEnebled" to="." method="_on_next_frame_enebled_toggled"]
+[connection signal="value_changed" from="DockableContainer/OnionSkin/VBoxContainer/NextFrame/NextFrameAmount" to="." method="_on_next_frame_amount_value_changed"]

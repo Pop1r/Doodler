@@ -1,0 +1,124 @@
+[gd_scene load_steps=18 format=3 uid="uid://c5wdrd5h4rvfn"]
+
+[ext_resource type="Script" uid="uid://cr1c8lbo1notm" path="res://scene/UI/UI/ui.gd" id="1_isgjg"]
+[ext_resource type="Script" uid="uid://bfi1mm158ge5l" path="res://addons/dockable_container/dockable_container.gd" id="1_kl0fs"]
+[ext_resource type="Script" uid="uid://da67x3ua6ietw" path="res://addons/dockable_container/layout_panel.gd" id="2_a4p7u"]
+[ext_resource type="Script" uid="uid://icucbtatip66" path="res://addons/dockable_container/layout.gd" id="3_o1lxd"]
+[ext_resource type="Script" uid="uid://bvvbi3x82xnut" path="res://addons/dockable_container/layout_split.gd" id="3_y23pv"]
+[ext_resource type="PackedScene" uid="uid://dwelrmsx517xi" path="res://scene/UI/Tools/tools.tscn" id="4_a4p7u"]
+[ext_resource type="PackedScene" uid="uid://cxu4m0cknifqu" path="res://scene/main/main.tscn" id="6_y23pv"]
+[ext_resource type="PackedScene" uid="uid://cfegp203tof3p" path="res://scene/UI/PanelColor/panel_color.tscn" id="7_4m7cv"]
+[ext_resource type="PackedScene" uid="uid://ccbuv4cu3akml" path="res://scene/UI/AnimationTimeLine/animation_timeline.tscn" id="7_gra6w"]
+
+[sub_resource type="Resource" id="Resource_4m7cv"]
+resource_name = "Tabs"
+script = ExtResource("2_a4p7u")
+names = PackedStringArray("Tools")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_isgjg"]
+resource_name = "Tabs"
+script = ExtResource("2_a4p7u")
+names = PackedStringArray("MainCanvas")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_eerew"]
+resource_name = "Tabs"
+script = ExtResource("2_a4p7u")
+names = PackedStringArray("PanelColor")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_r1l5u"]
+resource_name = "Split"
+script = ExtResource("3_y23pv")
+percent = 0.851
+first = SubResource("Resource_isgjg")
+second = SubResource("Resource_eerew")
+metadata/_custom_type_script = "uid://bvvbi3x82xnut"
+
+[sub_resource type="Resource" id="Resource_d0tya"]
+resource_name = "Split"
+script = ExtResource("3_y23pv")
+percent = 0.159
+first = SubResource("Resource_4m7cv")
+second = SubResource("Resource_r1l5u")
+metadata/_custom_type_script = "uid://bvvbi3x82xnut"
+
+[sub_resource type="Resource" id="Resource_f7tyw"]
+resource_name = "Tabs"
+script = ExtResource("2_a4p7u")
+names = PackedStringArray("AnimationTimeline")
+metadata/_custom_type_script = "uid://da67x3ua6ietw"
+
+[sub_resource type="Resource" id="Resource_mt8mf"]
+resource_name = "Split"
+script = ExtResource("3_y23pv")
+direction = 1
+percent = 0.866
+first = SubResource("Resource_d0tya")
+second = SubResource("Resource_f7tyw")
+metadata/_custom_type_script = "uid://bvvbi3x82xnut"
+
+[sub_resource type="Resource" id="Resource_gra6w"]
+resource_name = "Layout"
+script = ExtResource("3_o1lxd")
+root = SubResource("Resource_mt8mf")
+
+[node name="UI" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_isgjg")
+
+[node name="DockableContainer" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kl0fs")
+tabs_visible = false
+hide_single_tab = true
+layout = SubResource("Resource_gra6w")
+metadata/_custom_type_script = "uid://bfi1mm158ge5l"
+
+[node name="Tools" parent="DockableContainer" instance=ExtResource("4_a4p7u")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="MainCanvas" type="VBoxContainer" parent="DockableContainer"]
+layout_mode = 2
+
+[node name="HorizontalRuler" type="Button" parent="DockableContainer/MainCanvas"]
+layout_mode = 2
+
+[node name="ViewportandVerticalRuler" type="HBoxContainer" parent="DockableContainer/MainCanvas"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="DockableContainer/MainCanvas/ViewportandVerticalRuler"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="DockableContainer/MainCanvas/ViewportandVerticalRuler/SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(800, 543)
+render_target_update_mode = 4
+
+[node name="main" parent="DockableContainer/MainCanvas/ViewportandVerticalRuler/SubViewportContainer/SubViewport" instance=ExtResource("6_y23pv")]
+pivot_offset = Vector2(372.832, 290)
+
+[node name="PanelColor" parent="DockableContainer" instance=ExtResource("7_4m7cv")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="AnimationTimeline" parent="DockableContainer" instance=ExtResource("7_gra6w")]
+layout_mode = 2

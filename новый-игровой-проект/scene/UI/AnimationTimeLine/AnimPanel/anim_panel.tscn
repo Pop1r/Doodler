@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b76m1cf7oj30l"]
+
+[ext_resource type="Script" uid="uid://ter8axhfilu4" path="res://scene/UI/AnimationTimeLine/AnimPanel/anim_panel.gd" id="1_2k7qk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj7xn"]
+
+[node name="AnimPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qj7xn")
+script = ExtResource("1_2k7qk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2

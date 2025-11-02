@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bui02bqscob3n"]
+
+[ext_resource type="Script" uid="uid://c2m7l35e8pho6" path="res://scene/ffmeg/export_scene/ffmeg_export.gd" id="1_3qrtm"]
+
+[node name="ffmeg_export" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3qrtm")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfegp203tof3p"]
+
+[ext_resource type="Script" uid="uid://bor0t575uj620" path="res://scene/UI/PanelColor/panel_color.gd" id="1_et03e"]
+
+[node name="PanelColor" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_et03e")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="ColorPicker" type="ColorPicker" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/sv_width = 596
+color = Color(0, 0, 0, 1)
+edit_intensity = false
+can_add_swatches = false
+color_modes_visible = false
+hex_visible = false
+presets_visible = false
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="color_changed" from="ScrollContainer/ColorPicker" to="." method="_on_color_picker_color_changed"]

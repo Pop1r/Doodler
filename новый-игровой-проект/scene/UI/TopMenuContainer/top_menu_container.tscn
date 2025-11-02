@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://drxcg8nco2fqd"]
+
+[ext_resource type="Script" uid="uid://ceadjriv5wsmu" path="res://scene/UI/TopMenuContainer/top_menu_container.gd" id="1_lrj4j"]
+[ext_resource type="PackedScene" uid="uid://bohnn4r2bgu04" path="res://scene/dialogs/create_new_project.tscn" id="2_hxki6"]
+[ext_resource type="PackedScene" uid="uid://7qjkxx6thy1l" path="res://scene/UI/TopMenuContainer/dialogs/export_format_dialog.tscn" id="3_fscie"]
+
+[node name="TopMenuContainer" type="Panel"]
+custom_minimum_size = Vector2(0, 35)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+script = ExtResource("1_lrj4j")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="File" type="PopupMenu" parent="MarginContainer/HBoxContainer/MenuBar"]
+unique_name_in_owner = true
+oversampling_override = 1.0
+
+[node name="Help" type="PopupMenu" parent="MarginContainer/HBoxContainer/MenuBar"]
+unique_name_in_owner = true
+oversampling_override = 1.0
+
+[node name="dialogs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="CreateNewProject" parent="dialogs" instance=ExtResource("2_hxki6")]
+initial_position = 1
+
+[node name="ExportDialog" type="FileDialog" parent="dialogs"]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 2
+theme_override_constants/thumbnail_size = 50
+file_mode = 2
+display_mode = 1
+access = 2
+
+[node name="OpenProjectDialog" type="FileDialog" parent="dialogs"]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+file_mode = 0
+display_mode = 1
+access = 2
+filters = PackedStringArray("*.doodler ; Doodler file")
+
+[node name="SaveProject" type="FileDialog" parent="dialogs"]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 1
+file_mode = 2
+display_mode = 1
+access = 2
+
+[node name="ExportFormatDialog" parent="dialogs" instance=ExtResource("3_fscie")]
+visible = false
+
+[connection signal="dir_selected" from="dialogs/ExportDialog" to="." method="_on_export_dialog_dir_selected"]
+[connection signal="filename_filter_changed" from="dialogs/ExportDialog" to="." method="_on_export_dialog_filename_filter_changed"]
+[connection signal="dir_selected" from="dialogs/OpenProjectDialog" to="." method="_on_open_project_dialog_dir_selected"]
+[connection signal="file_selected" from="dialogs/OpenProjectDialog" to="." method="_on_open_project_dialog_file_selected"]
+[connection signal="dir_selected" from="dialogs/SaveProject" to="." method="_on_save_project_dir_selected"]
+[connection signal="confirmed" from="dialogs/ExportFormatDialog" to="." method="_on_export_format_dialog_confirmed"]

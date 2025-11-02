@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhp8cigj05ow1"]
+
+[ext_resource type="Script" uid="uid://r3bpfk4bia2f" path="res://scene/main/drawcanvas.gd" id="1_qhn3c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtsyf"]
+
+[node name="drawcanvas" type="TextureRect"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qtsyf")
+offset_right = 1024.0
+offset_bottom = 1024.0
+script = ExtResource("1_qhn3c")

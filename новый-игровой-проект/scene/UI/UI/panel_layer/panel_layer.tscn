@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://gvmlgodvdgwv"]
+
+[ext_resource type="Texture2D" uid="uid://spwnphxvhqpf" path="res://assets/ui_icons/layers/eye.svg" id="1_88m6b"]
+[ext_resource type="Script" uid="uid://qralsc32gtaf" path="res://scene/UI/UI/panel_layer/panel_layer.gd" id="1_xomiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xomiv"]
+bg_color = Color(0.50980395, 0.8235294, 0.6745098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PanelLayer" type="PanelContainer"]
+script = ExtResource("1_xomiv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xomiv")
+
+[node name="eye_button" type="TextureButton" parent="HBoxContainer/Panel"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_88m6b")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="current_layer_button" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(101, 0)
+layout_mode = 2
+text = "Layer 1"
+
+[connection signal="pressed" from="HBoxContainer/Panel/eye_button" to="." method="_on_eye_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/current_layer_button" to="." method="_on_current_layer_button_pressed"]

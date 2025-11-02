@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cwsfw2d0mqalh"]
+
+[ext_resource type="FontFile" uid="uid://dcf4sdo2bk18t" path="res://assets/font/Binggrae-Bold.otf" id="1_kxq3m"]
+
+[resource]
+default_font = ExtResource("1_kxq3m")
+Button/colors/font_color = Color(1, 1, 1, 1)

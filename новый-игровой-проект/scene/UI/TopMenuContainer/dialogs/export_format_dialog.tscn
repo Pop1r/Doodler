@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://7qjkxx6thy1l"]
+
+[ext_resource type="Script" uid="uid://wx04yfnxyhh0" path="res://scene/UI/TopMenuContainer/dialogs/export_format_dialog.gd" id="1_ui82s"]
+
+[node name="ExportFormatDialog" type="ConfirmationDialog"]
+oversampling_override = 1.0
+initial_position = 2
+visible = true
+script = ExtResource("1_ui82s")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 51.0
+selected = 0
+item_count = 6
+popup/item_0/text = "mp4"
+popup/item_0/id = 0
+popup/item_1/text = "gif"
+popup/item_1/id = 1
+popup/item_2/text = "webm"
+popup/item_2/id = 2
+popup/item_3/text = "MOV"
+popup/item_3/id = 3
+popup/item_4/text = "AVI"
+popup/item_4/id = 4
+popup/item_5/text = "Images"
+popup/item_5/id = 5
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,0 +1,205 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccbuv4cu3akml"]
+
+[ext_resource type="Script" uid="uid://j5w4ipcqvc34" path="res://scene/UI/AnimationTimeLine/animation_timeline.gd" id="1_2nj0w"]
+[ext_resource type="Script" uid="uid://omdxh25hsxiq" path="res://scene/UI/AnimationTimeLine/scroll_container.gd" id="2_qj7xn"]
+[ext_resource type="Theme" uid="uid://cwsfw2d0mqalh" path="res://scene/Themes/Theme.tres" id="2_xwwxc"]
+[ext_resource type="PackedScene" uid="uid://o06muw201dq8" path="res://scene/UI/AnimationTimeLine/AnimSlider/anim_slider.tscn" id="3_oha31"]
+
+[node name="AnimationTimeline" type="Panel"]
+clip_contents = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 205.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2nj0w")
+
+[node name="TimelineContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimelineButtons" type="HBoxContainer" parent="TimelineContainer"]
+layout_mode = 2
+
+[node name="LayerTools" type="PanelContainer" parent="TimelineContainer/TimelineButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TimelineContainer/TimelineButtons/LayerTools"]
+layout_mode = 2
+
+[node name="LayerSettingsContainer" type="VBoxContainer" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer"]
+layout_mode = 2
+
+[node name="LayerButtons" type="HBoxContainer" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="AddLayer" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme = ExtResource("2_xwwxc")
+text = " +Layer"
+
+[node name="DelLayer" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "-Layer"
+
+[node name="Save" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+visible = false
+layout_mode = 2
+text = "Save"
+
+[node name="Up" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+layout_mode = 2
+text = "UP"
+
+[node name="Down" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+layout_mode = 2
+text = "Down"
+
+[node name="AddFrame" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "+Frame"
+
+[node name="DelFrame" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "-Frame"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="MinFrameButton" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "|<"
+
+[node name="LeftFrameButton" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<"
+
+[node name="Play" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Play"
+
+[node name="RightFrameButton" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">"
+
+[node name="MaxFrameButton" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">|"
+
+[node name="LoopedButton" type="Button" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "L"
+
+[node name="FPSAnimation" type="SpinBox" parent="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 12.0
+
+[node name="PanelContainer" type="PanelContainer" parent="TimelineContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TimelineContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TimelineContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 38
+
+[node name="Control" type="Control" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainerLayers" type="VBoxContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 13
+
+[node name="AnimSlider" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_oha31")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+script = ExtResource("2_qj7xn")
+
+[node name="AnimTimeLine" type="VBoxContainer" parent="TimelineContainer/PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="dialogs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LayerDialog" type="ConfirmationDialog" parent="dialogs"]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(299, 100)
+dialog_text = "Remove a layer?"
+
+[node name="FrameDialog" type="ConfirmationDialog" parent="dialogs"]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(299, 100)
+dialog_text = "Remove a frame?"
+
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/AddLayer" to="." method="_on_add_layer_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/DelLayer" to="." method="_on_del_layer_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/Down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/AddFrame" to="." method="_on_add_frame_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/DelFrame" to="." method="_on_del_frame_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/MinFrameButton" to="." method="_on_min_frame_button_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/LeftFrameButton" to="." method="_on_left_frame_button_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/RightFrameButton" to="." method="_on_right_frame_button_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/MaxFrameButton" to="." method="_on_max_frame_button_pressed"]
+[connection signal="pressed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/LoopedButton" to="." method="_on_looped_button_pressed"]
+[connection signal="value_changed" from="TimelineContainer/TimelineButtons/LayerTools/MarginContainer/LayerSettingsContainer/LayerButtons/HBoxContainer/FPSAnimation" to="." method="_on_fps_animation_value_changed"]
+[connection signal="confirmed" from="dialogs/LayerDialog" to="." method="_on_layer_dialog_confirmed"]
+[connection signal="confirmed" from="dialogs/FrameDialog" to="." method="_on_frame_dialog_confirmed"]

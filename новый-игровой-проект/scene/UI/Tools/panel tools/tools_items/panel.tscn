@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0oskp2ihlc32"]
+
+[ext_resource type="Texture2D" uid="uid://c58vddhd1mit7" path="res://assets/tools_items/free-icon-eraser-637291.png" id="1_srkmn"]
+[ext_resource type="Script" uid="uid://dxcyfk8lc5hxu" path="res://scene/UI/Tools/panel tools/tools_items/panel.gd" id="1_x77tu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x77tu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqg4"]
+bg_color = Color(0.50980395, 0.8235294, 0.6745098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ToolsItem" type="Panel"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_x77tu")
+script = ExtResource("1_x77tu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 52.0
+scale = Vector2(0.7, 0.7)
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyqg4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_srkmn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
