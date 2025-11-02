@@ -48,7 +48,7 @@ To work with the source code, you must place `ffmpeg.exe` in the `res://` direct
 1.  **Install Godot:** Ensure you have Godot 4.5.1 or later installed.
 2.  **Get the Source Code:**
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone https://github.com/Pop1r/Doodler.git
     ```
 3.  **Setup FFmpeg:**
     *   Download `ffmpeg.exe` from the [official FFmpeg website](https://ffmpeg.org/download.html).
