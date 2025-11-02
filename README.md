@@ -3,7 +3,8 @@
 A simple and intuitive 2D frame-by-frame animation application built with the Godot Engine.
 
 ![Godot Version](https://img.shields.io/badge/Godot-4.5%2B-blue.svg)
-![Status](https://img.shields.io/badge/Status-School%20Project-green.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Status](https://img.shields.io/badge/Status-School%20Project-orange.svg)
 
 ---
 
@@ -66,4 +67,6 @@ To work with the source code, you must place `ffmpeg.exe` in the `res://` direct
 
 ## 📜 License
 
-This project was developed as a school assignment and is provided for educational purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project was developed as a school assignment.
