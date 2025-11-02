@@ -25,8 +25,8 @@ A simple and intuitive 2D frame-by-frame animation application built with the Go
 ## 🖼️ Screenshots
 
 <p align="center">
-  <img src="https://postimg.cc/Wtrm9CrJ" width="45%" />
-  <img src="https://postimg.cc/rzWGh3Wf" width="45%" />
+  <img src="https://i.postimg.cc/Y2DXSwC8/Screenshot-2025-11-02-200630.png" width="100%" />
+  <img src="https://i.postimg.cc/jq38jrjY/Screenshot-2025-11-02-201929.png" width="100%" />
 </p>
 
 ---
