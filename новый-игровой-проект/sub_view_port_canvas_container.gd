@@ -95,10 +95,6 @@ func update_current_cadr(l_id:int, f_index:int):
 	or not is_enebled_past_frame and not is_hide_onion_skin\
 	or not is_enebled_next_frame and not is_hide_onion_skin_next:
 		hide_onion_skin()
-	#elif  GlobalAnimationTimeline.is_plaing_animation \
-	#or not is_enebled_past_frame: return
-	
-	
 	if not is_enebled_next_frame and not is_enebled_past_frame \
 	or is_hide_onion_skin_all:return
 	if costal == 0:
@@ -117,6 +113,7 @@ func update_current_cadr(l_id:int, f_index:int):
 	if is_enebled_next_frame:
 		if f_index >= images.size():return
 		next_frmes_update(images,f_index)
+		
 	#var past_frame = await combine_frame(images, size, alpha_values)
 	#past_frame_texture_rect.texture = ImageTexture.create_from_image(past_frame)
 	#print('AALLLOOO')
@@ -126,17 +123,15 @@ func next_frmes_update(images:Array[Image],f_index:int):
 	var frames = GlobalAnimationTimeline.get_frames(layer_id)[-1]
 	print(frames, ' : ',f_index,' ', images.size())
 	var ps_frames = next_frame_texture_rect.get_children()
-	var max_frame = f_index + 1 #неудачное название
+	var max_frame = f_index + 1 
 	var MAX_frame_id = frames[-1]
 	var alpha_delta = 0.5 / float(ps_frames.size())
 	var past_alpha = 0.6
-	#if ps_frames.size() != frames.size():return
 	past_frame_texture_rect.modulate = Color.RED
 	if f_index <= ps_frames.size():
 		for i in ps_frames:
 			i.hide()
 	for i : TextureRect in ps_frames:
-		
 		if max_frame > MAX_frame_id:
 			i.hide()
 			break
@@ -146,6 +141,10 @@ func next_frmes_update(images:Array[Image],f_index:int):
 			i.show()
 			i.texture = ImageTexture.create_from_image(images[index])
 			i.modulate.a = past_alpha
+			
+			if i.material != null:
+				i.material.set_shader_parameter('alpha',past_alpha)
+				i.material.set_shader_parameter('canvas_texture',i.texture)
 		else:
 			i.hide()
 		max_frame += 1
@@ -176,12 +175,20 @@ func past_frames_update(images:Array[Image],f_index:int):
 			i.show()
 			i.texture = ImageTexture.create_from_image(images[index])
 			i.modulate.a = past_alpha
+			
+			if i.material != null:
+				i.material.set_shader_parameter('alpha',past_alpha)
+				i.material.set_shader_parameter('canvas_texture',i.texture)
 		else:
 			i.hide()
 		max_frame -= 1
 		
 func add_past_frame():
 	var text_rect = TextureRect.new()
+	#var new_material = ShaderMaterial.new()
+	#new_material.shader =  preload('res://scene/draw_canvas/canvas_container/onion_skinnig_shader.gdshader')
+	#new_material.set_shader_parameter('color',Color.RED)
+	#text_rect.material = new_material
 	text_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	past_frame_texture_rect.add_child(text_rect)
 func remove_past_frame(amount:int):
@@ -194,6 +201,11 @@ func remove_past_frame(amount:int):
 			
 func add_next_frame():
 	var text_rect = TextureRect.new()
+	#var new_material = ShaderMaterial.new()
+	#new_material.shader =  preload('res://scene/draw_canvas/canvas_container/onion_skinnig_shader.gdshader')
+	#new_material.set_shader_parameter('color',Color.GREEN)
+	#text_rect.material = new_material
+	
 	text_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	next_frame_texture_rect.add_child(text_rect)
 func remove_next_frame(amount:int):

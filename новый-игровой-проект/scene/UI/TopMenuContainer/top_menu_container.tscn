@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://drxcg8nco2fqd"]
+[gd_scene load_steps=5 format=3 uid="uid://drxcg8nco2fqd"]
 
 [ext_resource type="Script" uid="uid://ceadjriv5wsmu" path="res://scene/UI/TopMenuContainer/top_menu_container.gd" id="1_lrj4j"]
 [ext_resource type="PackedScene" uid="uid://bohnn4r2bgu04" path="res://scene/dialogs/create_new_project.tscn" id="2_hxki6"]
 [ext_resource type="PackedScene" uid="uid://7qjkxx6thy1l" path="res://scene/UI/TopMenuContainer/dialogs/export_format_dialog.tscn" id="3_fscie"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fscie"]
+bg_color = Color(0.14044744, 0.14044747, 0.14044738, 1)
 
 [node name="TopMenuContainer" type="Panel"]
 custom_minimum_size = Vector2(0, 35)
@@ -77,6 +80,41 @@ access = 2
 
 [node name="ExportFormatDialog" parent="dialogs" instance=ExtResource("3_fscie")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 200
+
+[node name="Guide" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fscie")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Guide"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 18
+text = "The frame-by-frame animation program provides the following functionality.
+
+Project management. To create a new project, select the \"File\" menu item and click \"New Project\". To save the current project, select \"File\" and click \"Save Project\". To load a previously created project, select \"File\" and click \"Open Project\". To export the finished animation, select \"File\" and click \"Export\", then select the desired file format.
+
+Frame management. To add a new frame, press the \"Add Frame\" button. To delete the current frame, press the \"Delete Frame\" button. The timeline panel is used to switch between frames.
+
+Layer management. To create a new layer, press the \"Add Layer\" button. To delete the current layer, press the \"Delete Layer\" button. 
+
+Onion skin function. To enable or disable the display of previous frames, use the \"Show Previous Frames\" toggle. To enable or disable the display of subsequent frames, use the \"Show Next Frames\" toggle. To set the number of displayed frames, use the \"Frame Count\" numeric field.
+
+Drawing tools. To select a brush color, use the color palette. To change the brush size, use the \"Brush Size\" slider. 
+
+Animation preview. To play the animation, press the \"Play\" button. To stop playback, press the \"Stop\" button. To adjust the playback speed, use the \"Frame Rate\" slider.
+"
 
 [connection signal="dir_selected" from="dialogs/ExportDialog" to="." method="_on_export_dialog_dir_selected"]
 [connection signal="filename_filter_changed" from="dialogs/ExportDialog" to="." method="_on_export_dialog_filename_filter_changed"]

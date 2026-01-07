@@ -1,12 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://k5ajk0qax6jf"]
+[gd_scene load_steps=5 format=3 uid="uid://k5ajk0qax6jf"]
 
 [ext_resource type="Script" uid="uid://drngg2qsi4cq3" path="res://scene/test/test.gd" id="1_e4ggw"]
+[ext_resource type="Shader" uid="uid://dyvsvyeursgtw" path="res://scene/draw_canvas/canvas_container/onion_skinnig_shader.gdshader" id="2_mih6t"]
+[ext_resource type="Texture2D" uid="uid://bxtbtwubnt7j2" path="res://icon.svg" id="3_mih6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_auxoc"]
+shader = ExtResource("2_mih6t")
+shader_parameter/color = Color(0.89411765, 0.84313726, 0.92156863, 0.41960785)
+shader_parameter/alpha = 0.81
+shader_parameter/canvas_texture = ExtResource("3_mih6t")
 
 [node name="test" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 127.0
+offset_top = -50.0
+offset_right = 127.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e4ggw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_auxoc")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_mih6t")

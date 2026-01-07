@@ -33,6 +33,7 @@ func setup_file_menu():
 		
 func setup_help_menu():
 	var help_menu_items := {
+		'Guide':'guide',
 		'Report a bug':'report_a_bug'
 	}
 	var i := 0
@@ -61,8 +62,9 @@ func help_menu_id_pressed(id:int):
 	print_debug('ID',id)
 	match id:
 		0:
+			start_guide()
+		1:
 			OS.shell_open('https://t.me/c/3210495796/2')
-		#1:
 		#2:
 			
 func _set_menu_shortcut(
@@ -126,3 +128,11 @@ func _on_export_format_dialog_confirmed() -> void:
 func _on_open_project_dialog_file_selected(path: String) -> void:
 	if Global.unzip_file(path, 'user://dd'):
 		Global.open_project.emit('user://dd')
+
+func start_guide():
+	$CanvasLayer/Guide.show()
+	await get_tree().create_timer(0.5).timeout
+	var python_file_path : String = 'SINTEZ_VOICE.py'
+	OS.execute('python',[python_file_path])
+	await get_tree().create_timer(1).timeout
+	$CanvasLayer/Guide.hide()
