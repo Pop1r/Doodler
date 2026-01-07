@@ -3,27 +3,39 @@ import sys
 import os
 
 def speak_text(text):
-    """Озвучивает готовый текст"""
+    """Озвучивает текст на английском с правильными настройками"""
     try:
         # Инициализация движка
         engine = pyttsx3.init()
         
-        # Настройки
-        engine.setProperty('rate', 600)    # Скорость
-        engine.setProperty('volume', 0.9)  # Громкость
+        # Настройки для лучшего английского произношения
+        engine.setProperty('rate', 500)     # Оптимальная скорость для английского
+        engine.setProperty('volume', 0.9)   # Громкость
         
-        # Поиск русского голоса
+        # Поиск английского голоса
         voices = engine.getProperty('voices')
+        for voice in voices:
+            # Ищем голос с английской локализацией
+            if 'english' in voice.name.lower() or 'en_' in voice.id.lower():
+                engine.setProperty('voice', voice.id)
+                print(f"Using voice: {voice.name}")
+                break
+        else:
+            # Если английский голос не найден, используем первый доступный
+            print("English voice not found, using default voice")
+        
         # Озвучивание
         engine.say(text)
         engine.runAndWait()
         return True
         
     except Exception as e:
+        print(f"Error in speech synthesis: {e}")
         return False
 
+
+
 if __name__ == "__main__":
-    # Жестко заданный текст
     FIXED_TEXT = """
     The frame-by-frame animation program provides the following functionality.
 
@@ -38,7 +50,14 @@ Onion skin function. To enable or disable the display of previous frames, use th
 Drawing tools. To select a brush color, use the color palette. To change the brush size, use the "Brush Size" slider. 
 
 Animation preview. To play the animation, press the "Play" button. To stop playback, press the "Stop" button. To adjust the playback speed, use the "Frame Rate" slider.
-
     """
     
-    speak_text(FIXED_TEXT)
+    print("Starting English text-to-speech...")
+    
+    # Используем улучшенную версию
+    success = speak_text(FIXED_TEXT)
+    
+    if success:
+        print("Speech completed successfully!")
+    else:
+        print("Speech synthesis failed!")

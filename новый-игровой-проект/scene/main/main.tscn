@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxu4m0cknifqu"]
+[gd_scene load_steps=4 format=3 uid="uid://cxu4m0cknifqu"]
 
 [ext_resource type="Script" uid="uid://d4k6ygwbeo5ja" path="res://scene/main/main.gd" id="1_am8c5"]
+[ext_resource type="Texture2D" uid="uid://dpqgb6m3njnwx" path="res://assets/а/2c44502bba50a60fce5b4945849d2cff.jpg" id="3_6vuhr"]
 [ext_resource type="PackedScene" uid="uid://bui02bqscob3n" path="res://scene/ffmeg/export_scene/ffmeg_export.tscn" id="5_qtsyf"]
 
 [node name="main" type="Control"]
@@ -46,10 +47,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Control"]
+z_index = 100
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -644.0
+offset_right = 960.0
+offset_bottom = 436.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -59,3 +65,19 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Control/Control/SubViewportContainer/SubViewport"]
+visible = false
+modulate = Color(1, 1, 1, 0.43137255)
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -893.0
+offset_right = -20.0
+offset_bottom = -893.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_6vuhr")

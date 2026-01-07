@@ -54,8 +54,7 @@ func _ready() -> void:
 func add_frame(new_layer_id:int, new_frame_id:int, index_layer : int = -1):
 	var index : int = 0
 	if index_layer == -1:
-		index = find_layer(new_layer_id)
-		
+		index = find_layer(new_layer_id)	
 	else:
 		index = index_layer
 	if index != -1:
@@ -67,7 +66,7 @@ func add_frame(new_layer_id:int, new_frame_id:int, index_layer : int = -1):
 	add_frame_started.emit(new_layer_id, new_frame_id)
 	current_cadr = new_frame_id
 	update_c_frame(0,current_cadr)
-	print('CURRENT ', current_cadr)
+	#print('CURRENT ', current_cadr)
 		
 func add_frame_button():
 	var layer = GlobalCanvas.current_layer
@@ -129,27 +128,20 @@ func combine_frames(frames_layers:Array):
 	var minn : int = min_id_frame_in_layers()
 	var maxx : int = max_id_frame_in_layers()
 	var past_frames : Array = []
-	
-	
-	
 	var result : Array[Image] = []
 	for i in range(frames_id.size()):
 		past_frames.append([GlobalCanvas.layers_pos[i],Image.new()])
-	
 	for i in range(minn, maxx+1):
 		for l in range(frames_id.size()):
 			var id = GlobalCanvas.layers_pos[l]
 			var index = find_layer(id)
-			#if index == -1:continue
 			var ind = frames_id[index][-1].find(i)
-			#if ind >= 0:
 			past_frames[l][-1] = frames_layers[l][ind]
 		var images_layers : Array[Image] = []
 		for l in past_frames:
 			images_layers.append(l[-1])
 		var result_image = GlobalCanvas.combine_image_layers(images_layers)
 		result.append(result_image)
-	print_debug(result)
 	save_frames_on_png(result)
 
 func min_id_frame_in_layers():

@@ -12,16 +12,13 @@ uniform vec2 texture_size = vec2(1920.0, 1080.0);
 uniform bool is_eraser = false;
 uniform bool allow_blending = true;
 
-// ПАРАМЕТРЫ СГЛАЖИВАНИЯ
 uniform float smoothing : hint_range(0.0, 0.3) = 0.1;
 
-// Упрощенная функция для рисования линии со сглаживанием
 float draw_line(vec2 start, vec2 end, vec2 uv, float radius) {
     vec2 line_dir = end - start;
     float line_length = length(line_dir);
     
     if (line_length < 0.0001) {
-        // Если точки совпадают, рисуем точку
         return 1.0 - smoothstep(radius - radius * smoothing, radius + radius * smoothing, distance(uv, start));
     }
     
@@ -46,29 +43,22 @@ void fragment() {
     vec4 current_color = texture(canvas_texture, uv);
     
     float total_alpha = 0.0;
-    
     if (is_drawing) {
-        // ПРИМЕНЯЕМ КОРРЕКЦИЮ КООРДИНАТ ко всем точкам
         vec2 corrected_uv = correct_coordinates(uv);
         vec2 corrected_draw_pos = correct_coordinates(draw_position);
         vec2 corrected_prev_pos = correct_coordinates(previous_draw_position);
         
-        // Также корректируем размер кисти
         float aspect_ratio = texture_size.x / texture_size.y;
         float corrected_brush_size = brush_size * aspect_ratio;
         
         total_alpha = draw_line(corrected_prev_pos, corrected_draw_pos, corrected_uv, corrected_brush_size);
         
-        // Ограничиваем альфа-значение
         total_alpha = clamp(total_alpha, 0.0, 1.0);
     }
-    
     if (is_eraser) {
-        // Ластик: уменьшаем альфа там, где рисуем
         COLOR = vec4(current_color.rgb, current_color.a * (1.0 - total_alpha));
     } else {
         if (allow_blending) {
-            // Смешивание цветов
             float final_alpha = total_alpha * brush_color.a;
 			if (current_color.a == 0.0){
 				current_color.rgb = brush_color.rgb;
@@ -78,7 +68,6 @@ void fragment() {
                 max(current_color.a, final_alpha)
             );
         } else {
-            // Замена цвета
             if (total_alpha > 0.01) {
                 COLOR = vec4(brush_color.rgb, max(current_color.a, total_alpha * brush_color.a));
             } else {

@@ -64,7 +64,7 @@ func save_project(dir:String = 'user:/'):
 	DirAccess.make_dir_absolute(temp_dir)
 	var project_data : Dictionary = {
 		'name':config_project['Name'],
-		'canvasSize': get_canvas_size(),
+		'canvasSize': GlobalCanvas.canvas_size,
 		'fps':FPS,
 		'currentFrame': GlobalAnimationTimeline.current_cadr,
 		'currentLayer': GlobalCanvas.current_layer,
@@ -88,14 +88,12 @@ func save_project(dir:String = 'user:/'):
 		file.close()
 		
 	if zip_folder(temp_dir,dir+'/'+config_project['Name']+'.doodler' ):
-		print('ЗИПЧИК СПРАВИЛСЯ')
 		file.close()
 		if cleanup_temp_files(temp_dir):
-			print("УСПЕШНО")
 			cleanup_temp_files(temp_dir+'/data')
 			cleanup_temp_files(temp_dir)
-	else:
-		print('Ошибка в зипе')
+	#else:
+		#print('Ошибка в зипе')
 		
 	
 func save_framse(images : Array,temp_dir:String):
