@@ -39,10 +39,6 @@ flat = true
 unique_name_in_owner = true
 oversampling_override = 1.0
 
-[node name="Help" type="PopupMenu" parent="MarginContainer/HBoxContainer/MenuBar"]
-unique_name_in_owner = true
-oversampling_override = 1.0
-
 [node name="dialogs" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0

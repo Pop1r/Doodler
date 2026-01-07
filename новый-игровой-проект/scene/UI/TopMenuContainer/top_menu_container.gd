@@ -3,16 +3,16 @@ extends Panel
 
 
 @onready var file_menu : PopupMenu = %File
-@onready var help_menu : PopupMenu = %Help
+@onready var help_menu : PopupMenu
 @onready var create_new_project_dialog : ConfirmationDialog = $dialogs/CreateNewProject
 @onready var export_as_dialog : FileDialog = $dialogs/ExportDialog
 @onready var open_project_dialog : FileDialog = $dialogs/OpenProjectDialog
 @onready var save_project_dialog : FileDialog = $dialogs/SaveProject
 @onready var export_format_dialog : ConfirmationDialog = $dialogs/ExportFormatDialog
+
 func _ready() -> void:
 	setup_file_menu()
-	setup_help_menu()
-	
+
 func setup_file_menu():
 	var file_menu_items := {
 		"New...": "new_file",

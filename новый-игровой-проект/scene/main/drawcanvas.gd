@@ -271,7 +271,6 @@ func add_frame(l_id:int , f_id:int):
 func sort_frames(l, f):
 	if frames_id.size() != frames.size():
 		frames_id.pop_at(-1)
-	frames_id = frames_id #кудаже без костылей) 
 	var fr_id = frames_id
 	var fr_image = frames
 	
